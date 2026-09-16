@@ -58,17 +58,30 @@
 
         .header-container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 12px;
             margin-bottom: 24px;
+        }
+
+        .header-container img {
+            height: 40px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 6px;
+            order: 3;
         }
 
         h1 {
             color: var(--header-color);
             font-size: 28px;
             margin: 0;
+            flex: 1 1 auto;
+            min-width: 0;
         }
 
         .theme-toggle-btn {
@@ -111,10 +124,19 @@
             margin-bottom: 12px;
         }
 
+        .table-scroll {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 24px;
+            border-radius: 8px;
+        }
+
         table {
             width: 100%;
+            min-width: 480px;
             border-collapse: collapse;
-            margin-bottom: 24px;
+            margin-bottom: 0;
             background: var(--surface-color);
             box-shadow: 0 1px 3px rgba(0,0,0,0.3);
             border-radius: 8px;
@@ -233,13 +255,49 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 14px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .theme-toggle-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+
+            .category-title {
+                font-size: 17px;
+                padding: 8px 12px;
+                margin-top: 24px;
+            }
+
+            th, td {
+                padding: 10px 12px;
+                font-size: 13.5px;
+            }
+        }
+
+        @media (max-width: 812px) and (max-height: 500px) and (orientation: landscape) {
+            body {
+                padding: 14px 18px;
+            }
+
+            .category-title {
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="header-container">
         <h1>MMT 2026 - Tirana</h1>
-        <img src="images/rm223-sasi.png">
+        <img src="https://t-426.github.io/mmt26/images/rm223-sasi.png">
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
             <span id="themeIcon">☀️</span> <span id="themeText">Light Mode</span>
         </button>
@@ -247,24 +305,26 @@
 
     <!-- ACCOMMODATION (MOVED TO TOP) -->
     <div class="category-title">Accommodation</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 35%;">Place Name</th>
-                <th style="width: 15%;">Distance</th>
-                <th style="width: 15%;">Review Score</th>
-                <th style="width: 35%;">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/SOIN+Rooms/data=!4m2!3m1!1s0x135031c91abfb80d:0x99dfacc8f2777e7" target="_blank">SOIN Rooms</a></td>
-                <td class="distance">Base (0 m)</td>
-                <td class="rating">★ 4.8</td>
-                <td class="note"><strong>Hotel</strong></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Place Name</th>
+                    <th style="width: 15%;">Distance</th>
+                    <th style="width: 15%;">Review Score</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/SOIN+Rooms/data=!4m2!3m1!1s0x135031c91abfb80d:0x99dfacc8f2777e7" target="_blank">SOIN Rooms</a></td>
+                    <td class="distance">Base (0 m)</td>
+                    <td class="rating">★ 4.8</td>
+                    <td class="note"><strong>Hotel</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- TRAVEL -->
     <div class="category-title">Travel</div>
@@ -313,279 +373,287 @@
 
     <!-- BARS & NIGHTLIFE -->
     <div class="category-title">Bars &amp; Nightlife</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 35%;">Place Name</th>
-                <th style="width: 15%;">Distance</th>
-                <th style="width: 15%;">Review Score</th>
-                <th style="width: 35%;">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Nouvelle+Vague+Tirana/data=!4m2!3m1!1s0x13503103cab24ac1:0xa42eaf1bc46bc949" target="_blank">Nouvelle Vague Tirana</a></td>
-                <td class="distance">460 m</td>
-                <td class="rating">★ 4.8</td>
-                <td class="note">Best cocktail bar in Tirana</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Hemingway+Bar+Tirana/data=!4m2!3m1!1s0x13503108b14f6faf:0x32d4f5c71cc1f95e" target="_blank">Hemingway Bar Tirana</a></td>
-                <td class="distance">1,210 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Jazz & rum bar</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Illyrian+Saloon/data=!4m2!3m1!1s0x135031638bf63c61:0xa451f3cb7430e98" target="_blank">Illyrian Saloon</a></td>
-                <td class="distance">700 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Craft beer pub dive bar. Live music Fridays</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Spy+Speakeasy/data=!4m2!3m1!1s0x1350313db697abb5:0x3fd5d8bcc788dd22" target="_blank">Spy Speakeasy</a></td>
-                <td class="distance">300 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Cocktail lounge</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/The+Taproom+by+Pan%E2%80%99s+Microbrewery/data=!4m2!3m1!1s0x13503155a9deda4d:0xd6507b9fb657a253" target="_blank">The Taproom by Pan’s Microbrewery</a></td>
-                <td class="distance">440 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Local craft beer<br><span class="booking-badge">📅 Table Booked Thursday at 19:00</span></td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Komiteti+Bar/data=!4m2!3m1!1s0x1350311bbb818539:0xe67e11c069ec980a" target="_blank">Komiteti Bar</a></td>
-                <td class="distance">60 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Raki museum bar</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Radio+bar+Tirana/data=!4m2!3m1!1s0x1350310244d95d0d:0x323a369046ebc9f4" target="_blank">Radio bar Tirana</a></td>
-                <td class="distance">410 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Retro bar & cocktails</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/%C3%87AK+BAR/data=!4m2!3m1!1s0x1350314e8ec27dd7:0xe02f7def4a87b19c" target="_blank">ÇAK BAR</a></td>
-                <td class="distance">290 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Local bar</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Deep+Bar+Tirana/data=!4m2!3m1!1s0x135031c01fafaa53:0x69fa173912cb024e" target="_blank">Deep Bar Tirana</a></td>
-                <td class="distance">160 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Nightlife bar</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Tiki+Bar/data=!4m2!3m1!1s0x13503102a02a28cb:0xd2b12c1b68c6375d" target="_blank">Tiki Bar</a></td>
-                <td class="distance">560 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Cocktails & drinks</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Duff+Sports+Bar/data=!4m2!3m1!1s0x13503103b888e2ed:0x81a8cb23ca514fea" target="_blank">Duff Sports Bar</a></td>
-                <td class="distance">480 m</td>
-                <td class="rating">★ 4.4</td>
-                <td class="note">American sports bar</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/New+Irish+Pub/data=!4m2!3m1!1s0x1350313149203b1d:0x465e8728d60b0ed1" target="_blank">New Irish Pub</a></td>
-                <td class="distance">530 m</td>
-                <td class="rating">★ 4.3</td>
-                <td class="note">Irish pub</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Place Name</th>
+                    <th style="width: 15%;">Distance</th>
+                    <th style="width: 15%;">Review Score</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Nouvelle+Vague+Tirana/data=!4m2!3m1!1s0x13503103cab24ac1:0xa42eaf1bc46bc949" target="_blank">Nouvelle Vague Tirana</a></td>
+                    <td class="distance">460 m</td>
+                    <td class="rating">★ 4.8</td>
+                    <td class="note">Best cocktail bar in Tirana</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Hemingway+Bar+Tirana/data=!4m2!3m1!1s0x13503108b14f6faf:0x32d4f5c71cc1f95e" target="_blank">Hemingway Bar Tirana</a></td>
+                    <td class="distance">1,210 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Jazz & rum bar</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Illyrian+Saloon/data=!4m2!3m1!1s0x135031638bf63c61:0xa451f3cb7430e98" target="_blank">Illyrian Saloon</a></td>
+                    <td class="distance">700 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Craft beer pub dive bar. Live music Fridays</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Spy+Speakeasy/data=!4m2!3m1!1s0x1350313db697abb5:0x3fd5d8bcc788dd22" target="_blank">Spy Speakeasy</a></td>
+                    <td class="distance">300 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Cocktail lounge</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/The+Taproom+by+Pan%E2%80%99s+Microbrewery/data=!4m2!3m1!1s0x13503155a9deda4d:0xd6507b9fb657a253" target="_blank">The Taproom by Pan’s Microbrewery</a></td>
+                    <td class="distance">440 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Local craft beer<br><span class="booking-badge">📅 Table Booked Thursday at 19:00</span></td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Komiteti+Bar/data=!4m2!3m1!1s0x1350311bbb818539:0xe67e11c069ec980a" target="_blank">Komiteti Bar</a></td>
+                    <td class="distance">60 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Raki museum bar</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Radio+bar+Tirana/data=!4m2!3m1!1s0x1350310244d95d0d:0x323a369046ebc9f4" target="_blank">Radio bar Tirana</a></td>
+                    <td class="distance">410 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Retro bar & cocktails</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/%C3%87AK+BAR/data=!4m2!3m1!1s0x1350314e8ec27dd7:0xe02f7def4a87b19c" target="_blank">ÇAK BAR</a></td>
+                    <td class="distance">290 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Local bar</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Deep+Bar+Tirana/data=!4m2!3m1!1s0x135031c01fafaa53:0x69fa173912cb024e" target="_blank">Deep Bar Tirana</a></td>
+                    <td class="distance">160 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Nightlife bar</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Tiki+Bar/data=!4m2!3m1!1s0x13503102a02a28cb:0xd2b12c1b68c6375d" target="_blank">Tiki Bar</a></td>
+                    <td class="distance">560 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Cocktails & drinks</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Duff+Sports+Bar/data=!4m2!3m1!1s0x13503103b888e2ed:0x81a8cb23ca514fea" target="_blank">Duff Sports Bar</a></td>
+                    <td class="distance">480 m</td>
+                    <td class="rating">★ 4.4</td>
+                    <td class="note">American sports bar</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/New+Irish+Pub/data=!4m2!3m1!1s0x1350313149203b1d:0x465e8728d60b0ed1" target="_blank">New Irish Pub</a></td>
+                    <td class="distance">530 m</td>
+                    <td class="rating">★ 4.3</td>
+                    <td class="note">Irish pub</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- RESTAURANTS & DINING -->
     <div class="category-title">Restaurants &amp; Dining</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 35%;">Place Name</th>
-                <th style="width: 15%;">Distance</th>
-                <th style="width: 15%;">Review Score</th>
-                <th style="width: 35%;">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/%E2%80%9CTradita+te+Meri%E2%80%9D/data=!4m2!3m1!1s0x135031a1d8ff8cc9:0x9434670963ebd029" target="_blank">“Tradita te Meri”</a></td>
-                <td class="distance">760 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Traditional Albanian cuisine</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Artigiano+at+Vila/data=!4m2!3m1!1s0x1350311b8c266bad:0x9ff858bf30064e6" target="_blank">Artigiano at Vila</a></td>
-                <td class="distance">390 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Italian & Mediterranean</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/EJA+RESTAURANT/data=!4m2!3m1!1s0x1350318b76ca2ec7:0x5b34577c6a883b9f" target="_blank">EJA RESTAURANT</a></td>
-                <td class="distance">360 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Modern dining</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Odas+Garden/data=!4m2!3m1!1s0x135031a4777b5889:0xb87c71c66f2aa4dd" target="_blank">Odas Garden</a></td>
-                <td class="distance">1,050 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Traditional Albanian restaurant</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Restaurant+Piceri+Era+%22Blloku%22/data=!4m2!3m1!1s0x1350310244071c23:0x62d72413c32f54" target="_blank">Restaurant Piceri Era "Blloku"</a></td>
-                <td class="distance">520 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Traditional Albanian & pizza</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Rossini+Restaurant+Tirana/data=!4m2!3m1!1s0x13503151371c14fd:0xb083a2b8a8190cb6" target="_blank">Rossini Restaurant Tirana</a></td>
-                <td class="distance">280 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Fine dining & Italian</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Naya+Tirana/data=!4m2!3m1!1s0x1350311adf391503:0x744ec2c1f3b1b9bd" target="_blank">Naya Tirana</a></td>
-                <td class="distance">290 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">International & lounge</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Smoke+House+Bar+%26+Grill/data=!4m2!3m1!1s0x135031864651880d:0x4ba9d2e3343d941a" target="_blank">Smoke House Bar &amp; Grill</a></td>
-                <td class="distance">370 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">BBQ & steakhouse</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/The+Kitchen+blloku/data=!4m2!3m1!1s0x1350319196f8aaed:0xe593a73627bc52c9" target="_blank">The Kitchen blloku</a></td>
-                <td class="distance">500 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">International cuisine</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/The+Traditional+Grill+Steak+%26+Fish/data=!4m2!3m1!1s0x13503114c7a982a3:0x3110afa5e637504e" target="_blank">The Traditional Grill Steak &amp; Fish</a></td>
-                <td class="distance">760 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Grilled meats & seafood</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Restaurant+Berlin+by+Kosherja/data=!4m2!3m1!1s0x13503103b3a4223b:0xe745c09e2b0dbdc4" target="_blank">Restaurant Berlin by Kosherja</a></td>
-                <td class="distance">510 m</td>
-                <td class="rating">★ 4.4</td>
-                <td class="note">European & traditional</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Place Name</th>
+                    <th style="width: 15%;">Distance</th>
+                    <th style="width: 15%;">Review Score</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/%E2%80%9CTradita+te+Meri%E2%80%9D/data=!4m2!3m1!1s0x135031a1d8ff8cc9:0x9434670963ebd029" target="_blank">“Tradita te Meri”</a></td>
+                    <td class="distance">760 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Traditional Albanian cuisine</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Artigiano+at+Vila/data=!4m2!3m1!1s0x1350311b8c266bad:0x9ff858bf30064e6" target="_blank">Artigiano at Vila</a></td>
+                    <td class="distance">390 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Italian & Mediterranean</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/EJA+RESTAURANT/data=!4m2!3m1!1s0x1350318b76ca2ec7:0x5b34577c6a883b9f" target="_blank">EJA RESTAURANT</a></td>
+                    <td class="distance">360 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Modern dining</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Odas+Garden/data=!4m2!3m1!1s0x135031a4777b5889:0xb87c71c66f2aa4dd" target="_blank">Odas Garden</a></td>
+                    <td class="distance">1,050 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Traditional Albanian restaurant</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Restaurant+Piceri+Era+%22Blloku%22/data=!4m2!3m1!1s0x1350310244071c23:0x62d72413c32f54" target="_blank">Restaurant Piceri Era "Blloku"</a></td>
+                    <td class="distance">520 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Traditional Albanian & pizza</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Rossini+Restaurant+Tirana/data=!4m2!3m1!1s0x13503151371c14fd:0xb083a2b8a8190cb6" target="_blank">Rossini Restaurant Tirana</a></td>
+                    <td class="distance">280 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Fine dining & Italian</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Naya+Tirana/data=!4m2!3m1!1s0x1350311adf391503:0x744ec2c1f3b1b9bd" target="_blank">Naya Tirana</a></td>
+                    <td class="distance">290 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">International & lounge</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Smoke+House+Bar+%26+Grill/data=!4m2!3m1!1s0x135031864651880d:0x4ba9d2e3343d941a" target="_blank">Smoke House Bar &amp; Grill</a></td>
+                    <td class="distance">370 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">BBQ & steakhouse</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/The+Kitchen+blloku/data=!4m2!3m1!1s0x1350319196f8aaed:0xe593a73627bc52c9" target="_blank">The Kitchen blloku</a></td>
+                    <td class="distance">500 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">International cuisine</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/The+Traditional+Grill+Steak+%26+Fish/data=!4m2!3m1!1s0x13503114c7a982a3:0x3110afa5e637504e" target="_blank">The Traditional Grill Steak &amp; Fish</a></td>
+                    <td class="distance">760 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Grilled meats & seafood</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Restaurant+Berlin+by+Kosherja/data=!4m2!3m1!1s0x13503103b3a4223b:0xe745c09e2b0dbdc4" target="_blank">Restaurant Berlin by Kosherja</a></td>
+                    <td class="distance">510 m</td>
+                    <td class="rating">★ 4.4</td>
+                    <td class="note">European & traditional</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- SIGHTS & ATTRACTIONS -->
     <div class="category-title">Sights &amp; Attractions</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 35%;">Place Name</th>
-                <th style="width: 15%;">Distance</th>
-                <th style="width: 15%;">Review Score</th>
-                <th style="width: 35%;">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Poligoni+Rogat+-+Shooting+Range+Rogat/data=!4m2!3m1!1s0x135031acf6efbd27:0xbd559570a2b8a3ef" target="_blank">Poligoni Rogat - Shooting Range Rogat</a></td>
-                <td class="distance">1.7 mi (2,800 m)</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Activity / Shooting range</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Skanderbeg+Square/data=!4m2!3m1!1s0x1350310fe40776b9:0x4b828c0912978b8a" target="_blank">Skanderbeg Square</a></td>
-                <td class="distance">880 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Main square</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Bunk'Art+2/data=!4m2!3m1!1s0x1350311aa42c43f5:0x8b18c1b038a027f" target="_blank">Bunk'Art 2</a></td>
-                <td class="distance">790 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Historical museum bunker</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Dajti+Ekspres+(Stacioni+i+posht%C3%ABm%2FLower+station)/data=!4m2!3m1!1s0x1350359cb2bf1191:0xb2b7745b43731440" target="_blank">Dajti Ekspres (Stacioni i poshtëm/Lower station)</a></td>
-                <td class="distance">2.8 mi (4,500 m)</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Cable car lower station</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Pyramid+of+Tirana/data=!4m2!3m1!1s0x1350311b70c971d7:0xe0c2e0adbe3d4b83" target="_blank">Pyramid of Tirana</a></td>
-                <td class="distance">350 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Architectural landmark</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Kulla+e+Sahatit/data=!4m2!3m1!1s0x135031100ebe7741:0x57b471504d91b0bd" target="_blank">Kulla e Sahatit</a></td>
-                <td class="distance">800 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Historic Clock Tower</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Tirana+Castle/data=!4m2!3m1!1s0x13503110a95ab631:0xa2c2c15c21446e60" target="_blank">Tirana Castle</a></td>
-                <td class="distance">610 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Historical complex & dining area</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Place Name</th>
+                    <th style="width: 15%;">Distance</th>
+                    <th style="width: 15%;">Review Score</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Poligoni+Rogat+-+Shooting+Range+Rogat/data=!4m2!3m1!1s0x135031acf6efbd27:0xbd559570a2b8a3ef" target="_blank">Poligoni Rogat - Shooting Range Rogat</a></td>
+                    <td class="distance">1.7 mi (2,800 m)</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Activity / Shooting range</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Skanderbeg+Square/data=!4m2!3m1!1s0x1350310fe40776b9:0x4b828c0912978b8a" target="_blank">Skanderbeg Square</a></td>
+                    <td class="distance">880 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Main square</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Bunk'Art+2/data=!4m2!3m1!1s0x1350311aa42c43f5:0x8b18c1b038a027f" target="_blank">Bunk'Art 2</a></td>
+                    <td class="distance">790 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Historical museum bunker</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Dajti+Ekspres+(Stacioni+i+posht%C3%ABm%2FLower+station)/data=!4m2!3m1!1s0x1350359cb2bf1191:0xb2b7745b43731440" target="_blank">Dajti Ekspres (Stacioni i poshtëm/Lower station)</a></td>
+                    <td class="distance">2.8 mi (4,500 m)</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Cable car lower station</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Pyramid+of+Tirana/data=!4m2!3m1!1s0x1350311b70c971d7:0xe0c2e0adbe3d4b83" target="_blank">Pyramid of Tirana</a></td>
+                    <td class="distance">350 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Architectural landmark</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Kulla+e+Sahatit/data=!4m2!3m1!1s0x135031100ebe7741:0x57b471504d91b0bd" target="_blank">Kulla e Sahatit</a></td>
+                    <td class="distance">800 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Historic Clock Tower</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Tirana+Castle/data=!4m2!3m1!1s0x13503110a95ab631:0xa2c2c15c21446e60" target="_blank">Tirana Castle</a></td>
+                    <td class="distance">610 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Historical complex & dining area</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- CASUAL DINING & CAFES -->
     <div class="category-title">Casual Dining &amp; Cafes</div>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 35%;">Place Name</th>
-                <th style="width: 15%;">Distance</th>
-                <th style="width: 15%;">Review Score</th>
-                <th style="width: 35%;">Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Happy+Belly+%2FEat+Smart/data=!4m2!3m1!1s0x1350310358d4105d:0x1f0e494425554099" target="_blank">Happy Belly / Eat Smart</a></td>
-                <td class="distance">490 m</td>
-                <td class="rating">★ 4.7</td>
-                <td class="note">Healthy cafe & smoothies</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/FAT+BRGR/data=!4m2!3m1!1s0x135031284c007e6f:0x407e5d7b32618d42" target="_blank">FAT BRGR</a></td>
-                <td class="distance">130 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Gourmet burger shop</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Gjelber+Tirana+Healthy+Vegetarian+Vegan/data=!4m2!3m1!1s0x135031017e547587:0xb40a468b7d3c9677" target="_blank">Gjelber Tirana Healthy Vegetarian Vegan</a></td>
-                <td class="distance">640 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Vegetarian / Vegan food</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/OPA+-+Greek+Street+Food+(Bllok)/data=!4m2!3m1!1s0x1350314950108a4b:0x4ced090b0db9c4bf" target="_blank">OPA - Greek Street Food (Bllok)</a></td>
-                <td class="distance">450 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Greek street food</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/n%E2%80%99Mes/data=!4m2!3m1!1s0x1350314d3f33ab6b:0x4420d76fac70a6f" target="_blank">n’Mes</a></td>
-                <td class="distance">330 m</td>
-                <td class="rating">★ 4.6</td>
-                <td class="note">Cafe & light eats</td>
-            </tr>
-            <tr>
-                <td><a href="https://www.google.com/maps/place/Dakos/data=!4m2!3m1!1s0x135031c16a753dbb:0x9eadb583f6d88fef" target="_blank">Dakos</a></td>
-                <td class="distance">350 m</td>
-                <td class="rating">★ 4.5</td>
-                <td class="note">Fast casual food</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 35%;">Place Name</th>
+                    <th style="width: 15%;">Distance</th>
+                    <th style="width: 15%;">Review Score</th>
+                    <th style="width: 35%;">Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Happy+Belly+%2FEat+Smart/data=!4m2!3m1!1s0x1350310358d4105d:0x1f0e494425554099" target="_blank">Happy Belly / Eat Smart</a></td>
+                    <td class="distance">490 m</td>
+                    <td class="rating">★ 4.7</td>
+                    <td class="note">Healthy cafe & smoothies</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/FAT+BRGR/data=!4m2!3m1!1s0x135031284c007e6f:0x407e5d7b32618d42" target="_blank">FAT BRGR</a></td>
+                    <td class="distance">130 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Gourmet burger shop</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Gjelber+Tirana+Healthy+Vegetarian+Vegan/data=!4m2!3m1!1s0x135031017e547587:0xb40a468b7d3c9677" target="_blank">Gjelber Tirana Healthy Vegetarian Vegan</a></td>
+                    <td class="distance">640 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Vegetarian / Vegan food</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/OPA+-+Greek+Street+Food+(Bllok)/data=!4m2!3m1!1s0x1350314950108a4b:0x4ced090b0db9c4bf" target="_blank">OPA - Greek Street Food (Bllok)</a></td>
+                    <td class="distance">450 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Greek street food</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/n%E2%80%99Mes/data=!4m2!3m1!1s0x1350314d3f33ab6b:0x4420d76fac70a6f" target="_blank">n’Mes</a></td>
+                    <td class="distance">330 m</td>
+                    <td class="rating">★ 4.6</td>
+                    <td class="note">Cafe & light eats</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.google.com/maps/place/Dakos/data=!4m2!3m1!1s0x135031c16a753dbb:0x9eadb583f6d88fef" target="_blank">Dakos</a></td>
+                    <td class="distance">350 m</td>
+                    <td class="rating">★ 4.5</td>
+                    <td class="note">Fast casual food</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         function toggleTheme() {
